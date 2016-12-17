@@ -13,6 +13,6 @@ public abstract class Bonus implements ICell {
 
     @Override
     public void applyEffect(Level level) {
-        this.location = null;
+        return;
     }
 }

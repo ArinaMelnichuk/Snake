@@ -9,8 +9,4 @@ public class Field {
     public Field(ICell[][] entities) {
         this.objects = entities;
     }
-
-//    public ICell getCell(int x, int y) {
-//        return objects[y][x];
-//    }
 }

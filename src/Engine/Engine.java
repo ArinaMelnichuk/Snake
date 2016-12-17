@@ -1,8 +1,6 @@
 package Engine;
-import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.List;
 
@@ -11,27 +9,21 @@ import java.util.List;
  */
 public class Engine {
     private Level level;
-    private Timer timer;
     private Point direction;
 
     public Engine(int mapSizeX, int mapSizeY) {
-        level = Generator.generateLevel(mapSizeX, mapSizeY);
+//        level = Generator.generateLevel(mapSizeX, mapSizeY);
+        ICell[][] objects = new ICell[40][50];
+        objects[20][25] = new SnakePart(new Point(200, 250));
+        objects[20][26] = new SnakePart(new Point(200, 251));
+        level = new Level(new Field(objects));
         direction = new Point(0, 0);
-        timer = new Timer(17, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                level.snake.move(direction);
-            }
-        }).start();
+        new Timer(17, event -> level.snake.move(direction)).start();
     }
-    // TODO processor
-    // TODO level.move(SnakeDirection direction) on tick
-    // TODO handling bonus interaction with snake
-    // TODO the same but with hedge
+    // TODO the same with hedge
 
     public void keyPressed(KeyEvent keyEvent) {
         int keyCode = keyEvent.getKeyCode();
-        Snake snake = level.snake;
         switch (keyCode) {
             case KeyEvent.VK_UP:
                 direction = new Point(0, -1);
@@ -49,13 +41,13 @@ public class Engine {
     }
 
     private void checkCollisions(Snake snake, List<Bonus> bonuses) {
-        bonuses.forEach(bonus -> { if (bonus.location == snake.location)
-        bonus.applyEffect(level);
+        bonuses.forEach(bonus -> { if (bonus.location == snake.location) {
+            bonus.applyEffect(level);
             ICell[][] objects = level.field.objects;
             int x = bonus.location.x;
             int y = bonus.location.y;
             objects[y][x] = null;
-        });
+        }});
     }
 
 

@@ -20,13 +20,26 @@ public class Snake {
     public Snake(Point location) {
         isAlive = true;
         SnakePart head = new SnakePart(location);
-        SnakePart tail = new SnakePart(new Point(location.x + 1, location.y));
+        SnakePart tail = new SnakePart(new Point(location.x - 1, location.y));
         snakeParts = new LinkedList<>(Arrays.asList(head, tail));
     }
 
-    public void move(Point vector) {
-        SnakePart head = snakeParts.getFirst();
-        Point currentLocation = head.location;
-        head.location = new Point(currentLocation.x + vector.x, currentLocation.y + vector.y);
+    public void move(Point vector, int width, int height) {
+        Point previousLocation = snakeParts.getFirst().location;
+        Point currentLocation = previousLocation;
+        for (SnakePart snakePart : snakeParts) {
+            if (snakePart == snakeParts.getFirst()) {
+                snakePart.location = new Point(previousLocation.x + vector.x, previousLocation.y + vector.y);
+                continue;
+            }
+            currentLocation = snakePart.location;
+            snakePart.location = previousLocation;
+            previousLocation = currentLocation;
+        }
+//        loop(width, height);
+    }
+
+    private void loop(int width, int height) {
+        this.location = new Point((this.location.x + width) % width, (this.location.y + height) % height);
     }
 }

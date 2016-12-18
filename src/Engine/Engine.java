@@ -1,9 +1,7 @@
 package Engine;
 
-import javax.swing.Timer;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,18 +10,13 @@ import java.util.List;
 public class Engine {
     public Level level;
     private Point direction;
+    private int mapWidth, mapHeight;
 
     public Engine(int mapSizeX, int mapSizeY) {
-//        level = Generator.generateLevel(mapSizeX, mapSizeY);
-        ICell[][] objects = new ICell[40][50];
-        for(ICell[] row : objects) {
-            Arrays.fill(row, null);
-        }
-        objects[20][25] = new SnakePart(new Point(200, 250));
-        objects[20][26] = new SnakePart(new Point(200, 251));
-        level = new Level(new Field(objects));
+        mapWidth = mapSizeX;
+        mapHeight = mapSizeY;
+        level = Generator.generateLevel(mapSizeX, mapSizeY);
         direction = new Point(0, 0);
-//        new Timer(17, event -> level.snake.move(direction)).start();
     }
     // TODO the same with hedge
 
@@ -43,6 +36,17 @@ public class Engine {
                 direction = new Point(-1, 0);
                 break;
         }
+    }
+
+    public void moveOnTick(){
+        level.snake.move(direction, mapWidth, mapHeight);
+        loop();
+        level.rearrangeFieldElements();
+    }
+
+    private void loop() {
+        Point location = level.snake.location;
+        level.snake.location = new Point((location.x + mapWidth) % mapWidth, (location.y + mapHeight) % mapHeight);
     }
 
     private void checkCollisions(Snake snake, List<Bonus> bonuses) {

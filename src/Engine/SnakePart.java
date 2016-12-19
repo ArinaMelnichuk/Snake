@@ -15,6 +15,8 @@ public class SnakePart implements ICell {
 
     @Override
     public void applyEffect(Level level) {
-        return;
+        if (level.snake.snakeParts.getFirst().location == this.location) {
+            level.snake.isAlive = false;
+        }
     }
 }

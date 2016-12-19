@@ -10,8 +10,7 @@ abstract public class Hedge implements ICell {
 
     @Override
     public void applyEffect(Level level) {
-        if (level.snake.location == this.location) {
+        if (level.snake.snakeParts.getFirst().location == this.location)
             level.snake.isAlive = false;
-        }
     }
 }

@@ -14,6 +14,7 @@ public abstract class Bonus implements ICell {
 
     @Override
     public void applyEffect(Level level) {
-        return;
+        if (level.snake.snakeParts.getFirst().location == this.location)
+            level.field.objects[this.location.y][this.location.x] = new Cell(this.location);
     }
 }

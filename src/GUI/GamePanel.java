@@ -2,7 +2,7 @@ package GUI;
 
 import Engine.Engine;
 import Engine.ICell;
-
+import Engine.Cell;
 import javax.swing.*;
 import java.awt.Graphics;
 
@@ -28,7 +28,7 @@ public class GamePanel extends JPanel {
         ICell[][] field = this.engine.level.field.objects;
         for (int y = 0; y < this.mapSizeY; ++y)
             for (int x = 0; x < this.mapSizeX; ++x)
-                if (field[y][x] != null)
+                if (!(field[y][x] instanceof Cell))
                     g.fillRect(this.cellSize * x, this.cellSize * y,
                                this.cellSize, this.cellSize);
     }

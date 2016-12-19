@@ -39,24 +39,13 @@ public class Engine {
     }
 
     public void moveOnTick(){
-        level.snake.move(direction, mapWidth, mapHeight);
-        loop();
+        level.snake.move(direction, this.mapWidth, this.mapHeight);
         level.rearrangeFieldElements();
     }
 
-    private void loop() {
-        Point location = level.snake.location;
-        level.snake.location = new Point((location.x + mapWidth) % mapWidth, (location.y + mapHeight) % mapHeight);
-    }
-
-    private void checkCollisions(Snake snake, List<Bonus> bonuses) {
-        bonuses.forEach(bonus -> { if (bonus.location == snake.location) {
-            bonus.applyEffect(level);
-            ICell[][] objects = level.field.objects;
-            int x = bonus.location.x;
-            int y = bonus.location.y;
-            objects[y][x] = null;
-        }});
+    private void checkCollisions() {
+        Point snakeLocation = level.snake.snakeParts.getFirst().location;
+        level.field.objects[snakeLocation.y][snakeLocation.x].applyEffect(level);
     }
 
 

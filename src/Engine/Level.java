@@ -19,8 +19,10 @@ public class Level {
 
     public void rearrangeFieldElements()
     {
-        for (ICell[] row: field.objects)
-            Arrays.fill(row, null);
+        for (ICell[] row : field.objects)
+            for (int i = 0; i < field.objects.length + 1; i++)
+                for (int j = 0; j < field.objects[0].length + 1; j++)
+                    Arrays.fill(row, new Cell(new Point(j, i)));
         snake.snakeParts.forEach(snakePart -> {
             int x = snakePart.location.x;
             int y = snakePart.location.y;

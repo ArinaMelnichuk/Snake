@@ -1,8 +1,8 @@
-package GUI;
+package Snake.GUI;
 
-import Engine.Engine;
+import Snake.Engine.Engine;
+
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Created by Arina Melnichuk on 12/17/2016.
@@ -19,13 +19,20 @@ public class Game extends JFrame {
         this.engine = new Engine(mapSizeX, mapSizeY);
         this.timer = new Timer(60, event -> {
             engine.moveOnTick();
+            timerStop();
             this.repaint();
             this.revalidate();
+            System.out.println(engine.level.score);
         });
         this.timer.start();
     }
 
     public Engine getEngine() {
         return this.engine;
+    }
+
+    private void timerStop(){
+        if (!engine.level.snake.isAlive)
+            timer.stop();
     }
 }

@@ -1,6 +1,6 @@
-package GUI;
+package Snake.GUI;
 
-import Engine.Engine;
+import Snake.Engine.Engine;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 

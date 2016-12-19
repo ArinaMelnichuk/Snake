@@ -1,4 +1,4 @@
-package GUI;
+package Snake.GUI;
 
 /**
  * Created by Arina Melnichuk on 12/18/2016.

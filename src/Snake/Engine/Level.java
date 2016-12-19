@@ -1,7 +1,8 @@
-package Engine;
+package Snake.Engine;
 
 import java.awt.*;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * Created by Arina Melnichuk on 11/23/2016.
@@ -22,11 +23,21 @@ public class Level {
         for (ICell[] row : field.objects)
             for (int i = 0; i < field.objects.length + 1; i++)
                 for (int j = 0; j < field.objects[0].length + 1; j++)
-                    Arrays.fill(row, new Cell(new Point(j, i)));
+                    Arrays.fill(row, new EmptyCell(new Point(j, i)));
         snake.snakeParts.forEach(snakePart -> {
             int x = snakePart.location.x;
             int y = snakePart.location.y;
             field.objects[y][x] = snakePart;
         });
+        field.hedges.forEach(hedge -> {
+            int x = hedge.location.x;
+            int y = hedge.location.y;
+            field.objects[y][x] = hedge;
+        });
+        field.bonusesRestart();
+        if (!field.bonuses.isEmpty()) {
+            Bonus bonus = field.bonuses.peek();
+            field.objects[bonus.location.y][bonus.location.x] = bonus;
+        }
     }
 }

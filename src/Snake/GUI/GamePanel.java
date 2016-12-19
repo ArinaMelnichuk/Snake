@@ -1,8 +1,9 @@
-package GUI;
+package Snake.GUI;
 
-import Engine.Engine;
-import Engine.ICell;
-import Engine.Cell;
+import Snake.Engine.Engine;
+import Snake.Engine.ICell;
+import Snake.Engine.Visitor;
+
 import javax.swing.*;
 import java.awt.Graphics;
 
@@ -12,12 +13,14 @@ import java.awt.Graphics;
 public class GamePanel extends JPanel {
     private int mapSizeX, mapSizeY, cellSize;
     private Engine engine;
+    private Visitor visitor;
 
     public GamePanel(int mapSizeX, int mapSizeY, int cellSize, Engine engine) {
         this.mapSizeX = mapSizeX;
         this.mapSizeY = mapSizeY;
         this.cellSize = cellSize;
         this.engine = engine;
+        this.visitor = new Visitor();
     }
 
     public void paintComponent(Graphics g) {
@@ -28,8 +31,6 @@ public class GamePanel extends JPanel {
         ICell[][] field = this.engine.level.field.objects;
         for (int y = 0; y < this.mapSizeY; ++y)
             for (int x = 0; x < this.mapSizeX; ++x)
-                if (!(field[y][x] instanceof Cell))
-                    g.fillRect(this.cellSize * x, this.cellSize * y,
-                               this.cellSize, this.cellSize);
+                field[y][x].accept(visitor, g, cellSize);
     }
 }

@@ -11,23 +11,23 @@ public class Game extends JFrame {
     private Engine engine;
     private Timer timer;
 
-    public Game(int mapSizeX, int mapSizeY, int cellSize) {
-        this.setBounds(200, 150, mapSizeX * cellSize, mapSizeY * cellSize);
+    public Game(int width, int height, int cellSize) {
+        // это не костыли, это погрешности
+        this.setBounds(200, 150, width * 3 / 2 * cellSize + 5, (height + 3) * cellSize + 2);
         this.setResizable(false);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
-        this.engine = new Engine(mapSizeX, mapSizeY);
+        this.engine = new Engine(width, height);
         this.timer = new Timer(60, event -> {
             engine.moveOnTick();
             timerStop();
             this.repaint();
             this.revalidate();
-            System.out.println(engine.level.score);
         });
         this.timer.start();
     }
 
-    public Engine getEngine() {
+        public Engine getEngine() {
         return this.engine;
     }
 

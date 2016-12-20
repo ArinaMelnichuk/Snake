@@ -2,7 +2,6 @@ package Snake.Engine;
 
 import java.awt.*;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 /**
  * Created by Arina Melnichuk on 11/23/2016.

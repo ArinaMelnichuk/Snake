@@ -53,6 +53,4 @@ public class Engine {
         Point snakeLocation = level.snake.getLocation(this.mapWidth, this.mapHeight);
         level.field.objects[snakeLocation.y][snakeLocation.x].applyEffect(level);
     }
-
-
 }

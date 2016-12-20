@@ -17,14 +17,10 @@ public class Program {
         JSplitPane panel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         panel.setDividerLocation(width * cellSize + 2);
 //        panel.setDividerSize(0);
-//        panel.setEnabled(false);
-//        panel.add(gamePanel);
-//        panel.add(scorePanel);
-//        game.add(panel);
-
-        MenuPanel panel1 = new MenuPanel(width * cellSize, height * cellSize);
-        game.add(panel1);
-
+        panel.setEnabled(false);
+        panel.add(gamePanel);
+        panel.add(scorePanel);
+        game.add(panel);
         game.addKeyListener(new MyKeyAdapter(game.getEngine()));
     }
 }

@@ -21,17 +21,7 @@ public class Snake {
         this.isAlive = true;
         SnakePart head = new SnakePart(location);
         SnakePart part = new SnakePart(new Point(location.x - 1, location.y));
-//        SnakePart part2 = new SnakePart(new Point(location.x - 2, location.y));
-//        SnakePart part3 = new SnakePart(new Point(location.x - 3, location.y));
-//        SnakePart part4 = new SnakePart(new Point(location.x - 4, location.y));
-//        SnakePart part5 = new SnakePart(new Point(location.x - 5, location.y));
-//        SnakePart part6 = new SnakePart(new Point(location.x - 6, location.y));
-//        SnakePart part7 = new SnakePart(new Point(location.x - 7, location.y));
-//        SnakePart part8 = new SnakePart(new Point(location.x - 8, location.y));
-//        SnakePart part9 = new SnakePart(new Point(location.x - 9, location.y));
-//        SnakePart part10 = new SnakePart(new Point(location.x - 10, location.y));
-        SnakePart tail = new SnakePart(new Point(location.x - 10, location.y - 1));
-//        this.snakeParts = new LinkedList<>(Arrays.asList(head, part, part2, part3, part4, part5, part6, part7, part8, part9, part10, tail));
+        SnakePart tail = new SnakePart(new Point(location.x - 1, location.y - 1));
         this.snakeParts = new LinkedList<>(Arrays.asList(head, part, tail));
     }
 

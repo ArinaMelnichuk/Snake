@@ -8,9 +8,11 @@ import java.awt.*;
  */
 public class SnakePart implements ICell {
     public Point location;
+    private Color color;
 
     public SnakePart(Point location) {
         this.location = location;
+        color = Color.GREEN;
     }
 
     @Override
@@ -21,7 +23,12 @@ public class SnakePart implements ICell {
     }
 
     @Override
+    public Color getColor() {
+        return color;
+    }
+
+    @Override
     public void accept(Visitor visitor, Graphics g, int cellSize) {
-        visitor.visit(this, location.x, location.y, cellSize, g);
+        visitor.visit(this, location.x, location.y, cellSize);
     }
 }

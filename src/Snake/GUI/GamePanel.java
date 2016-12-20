@@ -3,6 +3,7 @@ package Snake.GUI;
 import Snake.Engine.Engine;
 import Snake.Engine.ICell;
 import Snake.Engine.Visitor;
+import Snake.Engine.VisitorImpl;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,10 +21,10 @@ public class GamePanel extends JPanel {
         this.mapHeight = mapHeight;
         this.cellSize = cellSize;
         this.engine = engine;
-        this.visitor = new Visitor();
     }
 
     public void paintComponent(Graphics g) {
+        this.visitor = new VisitorImpl(g);
         for (int x = 0; x < this.mapWidth + 1; ++x)
             g.drawLine(this.cellSize * x, 0, this.cellSize * x, this.cellSize * this.mapHeight);
         for (int y = 0; y < this.mapHeight + 1; ++y)

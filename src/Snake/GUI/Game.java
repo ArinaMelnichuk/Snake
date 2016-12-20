@@ -27,12 +27,12 @@ public class Game extends JFrame {
         this.timer.start();
     }
 
-        public Engine getEngine() {
+    public Engine getEngine() {
         return this.engine;
     }
 
     private void timerStop(){
-        if (!engine.level.snake.isAlive)
+        if (!engine.level.snake.isAlive || engine.level.field.bonuses.isEmpty())
             timer.stop();
     }
 }

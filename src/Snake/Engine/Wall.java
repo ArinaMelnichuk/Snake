@@ -13,6 +13,6 @@ public class Wall extends Hedge {
 
     @Override
     public void accept(Visitor visitor, Graphics g, int cellSize) {
-        visitor.visit(this, location.x, location.y, cellSize, g);
+        visitor.visit(this, location.x, location.y, cellSize);
     }
 }

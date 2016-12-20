@@ -7,10 +7,12 @@ import java.awt.*;
  */
 public class ScoreBonus extends Bonus {
     private int points;
+    private Color color;
 
     public ScoreBonus(Point location) {
         super(location);
         points = 5;
+        color = Color.RED;
     }
 
     @Override
@@ -20,7 +22,12 @@ public class ScoreBonus extends Bonus {
     }
 
     @Override
+    public Color getColor() {
+        return color;
+    }
+
+    @Override
     public void accept(Visitor visitor, Graphics g, int cellSize) {
-        visitor.visit(this, location.x, location.y, cellSize, g);
+        visitor.visit(this, location.x, location.y, cellSize);
     }
 }

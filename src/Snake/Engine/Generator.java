@@ -37,14 +37,14 @@ public final class Generator {
                     Arrays.fill(row, new EmptyCell(new Point(j, i)));
         Snake snake = new Snake(new Point(x / 2, y / 2));
         snake.snakeParts.forEach(snakePart -> objects[snakePart.location.y][snakePart.location.x] = snakePart);
-        int xWall = random.nextInt(x);
-        int yWall = random.nextInt(y);
+        int xWall = random.nextInt(x - 2) + 1;
+        int yWall = random.nextInt(y - 2) + 1;
 
         LinkedList<SnakePart> parts = snake.snakeParts;
         for (int i = 0; i < parts.size(); i++) {
             if (new Point(xWall, yWall).equals(parts.get(i).location)) {
-                xWall = random.nextInt(x);
-                yWall = random.nextInt(y);
+                xWall = random.nextInt(x - 2) + 1;
+                yWall = random.nextInt(y - 2) + 1;
             }
         }
         // форма преграды зависит от уровня
@@ -57,16 +57,16 @@ public final class Generator {
         List<Point> bonusPositions = new LinkedList<>();
         // 4 - количество бонусов
         for (int i = 0; i < 4; i++) {
-            Point point = new Point(random.nextInt(x), random.nextInt(y));
+            Point point = new Point(random.nextInt(x - 2) + 1, random.nextInt(y - 2) + 1);
             bonusPositions.add(point);
             hedges.forEach(hedge -> {
                 if (hedge.location.equals(point)) {
-                    Point newPoint = new Point(random.nextInt(x), random.nextInt(y));
+                    Point newPoint = new Point(random.nextInt(x - 2) + 1, random.nextInt(y - 2) + 1);
                     bonusPositions.add(newPoint);
                 }
             });
             if (bonusPositions.contains(point)) {
-                bonusPositions.add(new Point(random.nextInt(x), random.nextInt(y)));
+                bonusPositions.add(new Point(random.nextInt(x - 2) + 1, random.nextInt(y - 2) + 1));
             }
             bonuses.add(new ScoreBonus(new Point(point.x, point.y)));
         }

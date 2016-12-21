@@ -2,7 +2,9 @@ package Snake.Engine;
 
 import java.awt.Point;
 import java.util.Arrays;
+import java.util.Hashtable;
 import java.util.LinkedList;
+import java.util.Map;
 
 
 /**
@@ -23,6 +25,7 @@ public class Snake {
         SnakePart part = new SnakePart(new Point(location.x - 1, location.y));
         SnakePart tail = new SnakePart(new Point(location.x - 1, location.y - 1));
         this.snakeParts = new LinkedList<>(Arrays.asList(head, part, tail));
+        this.direction = new Point(0,1);
     }
 
     public void move(int mapWidth, int mapHeight) {
@@ -34,7 +37,16 @@ public class Snake {
     }
 
     public void setDirection(Point direction) {
-        this.direction = direction;
+        Hashtable<String, Point> dict = new Hashtable<>();
+
+        dict.put(new Point(0,1).toString(), new Point(0,-1));
+        dict.put(new Point(0,-1).toString(), new Point(0,1));
+        dict.put(new Point(1,0).toString(), new Point(-1,0));
+        dict.put(new Point(-1,0).toString(), new Point(1,0));
+
+        Point bad = dict.get(this.direction.toString());
+        if (!bad.equals(direction))
+            this.direction = direction;
     }
 
     public Point getLocation(int mapWidth, int mapHeight) {

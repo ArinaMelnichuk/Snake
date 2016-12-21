@@ -23,20 +23,16 @@ public class Engine {
         int keyCode = keyEvent.getKeyCode();
         switch (keyCode) {
             case KeyEvent.VK_UP:
-                if (!direction.equals(new Point(0, 1)))
-                    direction = new Point(0, -1);
+                direction = new Point(0, -1);
                 break;
             case KeyEvent.VK_DOWN:
-                if (!direction.equals(new Point(0, -1)))
-                    direction = new Point(0, 1);
+                direction = new Point(0, 1);
                 break;
             case KeyEvent.VK_RIGHT:
-                if (!direction.equals(new Point(-1, 0)))
-                    direction = new Point(1, 0);
+                direction = new Point(1, 0);
                 break;
             case KeyEvent.VK_LEFT:
-                if (!direction.equals(new Point(1, 0)))
-                    direction = new Point(-1, 0);
+                direction = new Point(-1, 0);
                 break;
         }
     }

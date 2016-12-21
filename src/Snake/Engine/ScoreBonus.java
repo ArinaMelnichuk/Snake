@@ -7,23 +7,16 @@ import java.awt.*;
  */
 public class ScoreBonus extends Bonus {
     private int points;
-    private Color color;
 
     public ScoreBonus(Point location) {
         super(location);
         points = 5;
-        color = Color.RED;
     }
 
     @Override
     public void applyEffect(Level level) {
         super.applyEffect(level);
         level.score += points;
-    }
-
-    @Override
-    public Color getColor() {
-        return color;
     }
 
     @Override

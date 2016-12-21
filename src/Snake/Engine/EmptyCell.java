@@ -7,21 +7,14 @@ import java.awt.*;
  */
 public class EmptyCell implements ICell {
     protected Point location;
-    private Color color;
 
     public EmptyCell(Point location) {
         this.location = location;
-        color = Color.WHITE;
     }
 
     @Override
     public void applyEffect(Level level) {
         return;
-    }
-
-    @Override
-    public Color getColor() {
-        return color;
     }
 
     @Override

@@ -7,5 +7,4 @@ import java.awt.*;
  */
 public interface ICell extends IDrawable {
     void applyEffect(Level level);
-    Color getColor();
 }

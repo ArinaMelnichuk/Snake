@@ -8,11 +8,9 @@ import java.awt.*;
  */
 public class SnakePart implements ICell {
     public Point location;
-    private Color color;
 
     public SnakePart(Point location) {
         this.location = location;
-        color = Color.GREEN;
     }
 
     @Override
@@ -20,11 +18,6 @@ public class SnakePart implements ICell {
         if (level.snake.snakeParts.getFirst() != this) {
             level.snake.isAlive = false;
         }
-    }
-
-    @Override
-    public Color getColor() {
-        return color;
     }
 
     @Override

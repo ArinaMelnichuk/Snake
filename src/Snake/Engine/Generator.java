@@ -55,19 +55,18 @@ public final class Generator {
         hedges.forEach(hedge -> objects[hedge.location.y][hedge.location.x] = hedge);
 
         List<Point> bonusPositions = new LinkedList<>();
-        // 4 - количество бонусов
-        for (int i = 0; i < 4; i++) {
-            Point point = new Point(random.nextInt(x - 2) + 1, random.nextInt(y - 2) + 1);
+        // 5 - количество бонусов
+        for (int i = 0; i < 5; i++) {
+            Point point = new Point(random.nextInt(x), random.nextInt(y));
             bonusPositions.add(point);
             hedges.forEach(hedge -> {
                 if (hedge.location.equals(point)) {
-                    Point newPoint = new Point(random.nextInt(x - 2) + 1, random.nextInt(y - 2) + 1);
+                    Point newPoint = new Point(random.nextInt(x), random.nextInt(y));
                     bonusPositions.add(newPoint);
                 }
             });
-            if (bonusPositions.contains(point)) {
-                bonusPositions.add(new Point(random.nextInt(x - 2) + 1, random.nextInt(y - 2) + 1));
-            }
+            if (bonusPositions.contains(point))
+                bonusPositions.add(new Point(random.nextInt(x), random.nextInt(y)));
             bonuses.add(new ScoreBonus(new Point(point.x, point.y)));
         }
 
